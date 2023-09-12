@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/layout}">
+	
+	<link th:href="@{fontawesome/css/all.css}"  rel="stylesheet"> 
+	
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+<head th:replace="layout/layout :: head">
+<meta charset="UTF-8">
+<title></title>
+</head>
+<body>
+<div class="container-fluid" layout:fragment="page-content">
+	
+	<div style="text-align: center;">
+		<h1 th:text="${titulo}"></h1>
+	</div>
+
+	<div class="container">
+
+		<div class="mx-3 my-3">
+			<a class="btn btn-primary btn-sm"   
+			th:href="@{/views/juego/savePartida}" title="Crear una nueva Partida">
+				<i class="fa-solid fa-file"></i>
+				<span th:text="#{accion.nuevo}"></span>
+			</a>
+		</div>
+		
+		<table class="table table-striped table-hover">
+			<thead>
+				<tr>
+					<th scope="col">[[#{partida.id}]]</th>
+					<th scope="col">[[#{partida.fecha}]]</th>
+			<!--		<th scope="col" sec:authorize="hasRole('ROLE_ADMIN')"  >[[#{partida.accion}]]</th>      -->
+
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="partida:${partidas}">
+					<td th:text="${partida.getId()}"></td>
+					<td th:text="${partida.getFecha()}"></td>
+		
+				</tr>
+			</tbody>
+
+		</table>
+
+
+	</div>
+
+	<!---------------------------------------------------------------------------------------------->
+</div>
+	
+	<!--OTRO SCRIPTS PARA PAGINAS-->
+	<th:block layout:fragment="page-scripts">
+
+	</th:block>
+
+</body>
+</html>

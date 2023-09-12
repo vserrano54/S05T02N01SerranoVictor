@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/layout}">
+	
+	<link th:href="@{fontawesome/css/all.css}"  rel="stylesheet"> 
+	
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+<head th:replace="layout/layout :: head">
+<meta charset="UTF-8">
+<title></title>
+</head>
+<body>
+<div class="container-fluid" layout:fragment="page-content">
+	
+	<div style="text-align: center;">
+		<h1 th:text="${titulo}"></h1>
+	</div>
+
+	<div class="container">
+
+		<div class="mx-3 my-3">
+			<a class="btn btn-primary btn-sm" sec:authorize="hasRole('ROLE_ADMIN')"   
+			th:href="@{/views/rol/add}" title="Crear nuevo registro de rol">
+				<i class="fa-solid fa-file"></i>
+				<span th:text="#{accion.nuevo}"></span>
+			</a>
+		</div>
+		<table class="table table-striped table-hover">
+			<thead>
+				<tr>
+					<th scope="col">[[#{rol.id}]]</th>
+					<th scope="col">[[#{rol.rol}]]</th>
+					<th scope="col" sec:authorize="hasRole('ROLE_ADMIN')"  >[[#{rol.acciones}]]</th>
+
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="roldto:${roles}">
+					<td th:text="${roldto.getId()}"></td>
+					<td th:text="${roldto.getDescripcion()}"></td>
+					
+					<td sec:authorize="hasRole('ROLE_ADMIN')"  >
+						<a class="btn btn-success btn-sm" th:href="@{/views/rol/update/}+${roldto.getId()}"
+							title="Editar registro de rol">
+							<i class="fa-solid fa-file-pen"></i>
+							<span th:text="#{accion.editar}"></span>
+						</a>
+						<a class="btn btn-danger btn-sm" th:href="@{/views/rol/delete/}+${roldto.getId()}"
+							title="Eliminar registro de rol"
+							onclick="return confirm('¿Está seguro de eliminar el registro?');">
+							<i class="fa-solid fa-trash-can"></i>
+							<span th:text="#{accion.eliminar}"></span>
+
+						</a>
+
+
+					</td>
+				</tr>
+			</tbody>
+
+		</table>
+
+
+	</div>
+
+	<!---------------------------------------------------------------------------------------------->
+</div>
+	
+	<!--OTRO SCRIPTS PARA PAGINAS-->
+	<th:block layout:fragment="page-scripts">
+
+	</th:block>
+
+</body>
+</html>

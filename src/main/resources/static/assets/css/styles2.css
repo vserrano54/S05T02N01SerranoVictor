@@ -1,0 +1,46 @@
+ body.juego{
+    margin: 0px;
+    background-color: #2F4F30;
+    color: white;
+}
+
+header.titulo{
+    text-align: center;
+    background-color: black;
+    color:white;
+    padding: 20px;
+    font-size: 25px;
+}
+
+.dados{
+   
+    width: 300px;
+    left: 100px;
+    margin-top: 150px;
+    margin-left: 40px;
+
+}
+ #jugador-dados{
+    height: 240px;
+
+}
+
+
+@keyframes tiradaDados {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(360deg);
+  }
+  100% {
+    transform: rotate(720deg);
+  }
+}
+
+.dados {
+  animation-name: tiradaDados;
+  animation-duration: 2s; /* Duración de la animación en segundos */
+  animation-timing-function: ease-in-out; /* Función de temporización (opcional) */
+  animation-iteration-count: 1; /* Número de veces que se repite la animación (1 para una tirada) */
+}

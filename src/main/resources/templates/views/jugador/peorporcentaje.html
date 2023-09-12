@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/layout}">
+<head th:replace="layout/layout :: head">
+<meta charset="UTF-8">
+<title></title>
+</head>
+<body>
+
+	<div class="container-fluid" layout:fragment="page-content">
+		
+		
+		<div class="container mt-5 ml-5 pl-5">
+			<div class="row justify-content-left">
+				<div class="col-8">
+		
+					<div class="card bg-light">
+						<div class="card-header" th:text="${titulo}"></div>
+						<div class="card-body">
+							<form th:object="${jugador}">
+							
+								<div class="form-group">
+									<label for="rol" class="form-label col-md-2">[[#{jugador.jugador}]]: </label>
+									<input type="text" class="form-control form-control-sm col-md-6" id="jugador"
+										th:field="*{jugador}" th:placeholder="#{rol.rol.placeholder}" />
+									<small class="form-text text-danger" th:if="${#fields.hasErrors('jugador')}"
+										th:errors="*{jugador}">
+									</small>
+								</div>
+								
+								<div class="form-group">
+									<label for="rol" class="form-label col-md-2">[[#{Jugador.partidas.ganadas}]]: </label>
+									<input type="text" class="form-control form-control-sm col-md-6" id="partidasGanadas"
+										th:field="*{partidasGanadas}" th:placeholder="#{rol.rol.placeholder}" />
+									<small class="form-text text-danger" th:if="${#fields.hasErrors('partidasGanadas')}"
+										th:errors="*{partidasGanadas}">
+									</small>
+								</div>
+								
+								<div class="form-group">
+									<label for="rol" class="form-label col-md-2">[[#{jugador.partidas.totales}]]: </label>
+									<input type="text" class="form-control form-control-sm col-md-6" id="partidasTotales"
+										th:field="*{partidasTotales}" th:placeholder="#{rol.rol.placeholder}" />
+									<small class="form-text text-danger" th:if="${#fields.hasErrors('partidasTotales')}"
+										th:errors="*{partidasTotales}">
+									</small>
+								</div>
+								
+								<div class="form-group">
+									<label for="rol" class="form-label col-md-2">[[#{jugador.porcentaje.acierto}]]: </label>
+									<input type="text" class="form-control form-control-sm col-md-6" id="porcentajeAciertos"
+										th:field="*{porcentajeAciertos}" th:placeholder="#{rol.rol.placeholder}" />
+									<small class="form-text text-danger" th:if="${#fields.hasErrors('porcentajeAciertos')}"
+										th:errors="*{porcentajeAciertos}">
+									</small>
+								</div>
+		
+	
+								</div>
+		
+		
+							</form>
+		
+						</div>
+					</div>
+		
+		
+		
+				</div>
+			</div>
+		</div>
+		
+		
+		
+		
+		<!--------------------------------------------------------------------  -->
+		</div>
+	
+	<!--OTRO SCRIPTS PARA PAGINAS-->
+	<th:block layout:fragment="page-scripts">
+
+	</th:block>
+
+</body>
+</html>

@@ -1,0 +1,24 @@
+Instrucciones
+
+1.	Ejecute script mySql jugadadb.
+Este script crea la base de datos con las tablas: tbl_jugada, tbl_partida, tbl_rol, 
+tbl_tirada, tbl_user, tbl_user_rol, las cuales ayudan a realizar el control tanto de
+ usuarios como jugadas y asi facilitar las consultas de estadísticas.
+
+El script también crea los procedimientos almacenados: getListarUsuarios, 
+lista_jugadas_por_jugador, lista_porcentaje_logrado, lista_rankin_por_jugador, 
+peor_porcentaje_logrado, peor_rankin_logrado, estos procedimientos facilitan 
+las consultas solicitadas.
+
+El script crea un usuario por defecto:
+Usuario: admin
+Password: 123
+Rol: de Administrador
+
+A los usuarios que se registran se les asigna el Rol de Jugador y no pueden acceder 
+a las estadísticas y otras funciones, solo tienen acceso a ver las lista de jugadas, 
+crear una nueva jugada y realizar tiros de dados.
+
+Solo el usuario administrador tiene acceso a todas las demás funciones.
+
+Adjunto imagen de las pantallas.

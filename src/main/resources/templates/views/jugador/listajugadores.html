@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/layout}">
+	
+	<link th:href="@{fontawesome/css/all.css}"  rel="stylesheet"> 
+	
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+<head th:replace="layout/layout :: head">
+<meta charset="UTF-8">
+<title></title>
+</head>
+<body>
+<div class="container-fluid" layout:fragment="page-content">
+	
+	<div style="text-align: center;">
+		<h1 th:text="${titulo}"></h1>
+	</div>
+
+	<div class="container">
+
+	
+		<table class="table table-striped table-hover">
+			<thead>
+				<tr>
+					<th scope="col">[[#{jugador.id}]]</th>
+					<th scope="col">[[#{jugador.usuario}]]</th>
+					<th scope="col">[[#{jugador.nombre}]]</th>
+					<th scope="col">[[#{jugador.fecha}]]</th>
+					<th scope="col" sec:authorize="hasRole('ROLE_ADMIN')"  >[[#{jugador.accion}]]</th>
+
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="jugador:${jugadores}">
+					<td scope="row" th:text="${jugador.getId()}"></td>
+					<td th:text="${jugador.getUsername()}"></td>
+					<td th:text="${jugador.getNombre()}"></td>
+					<td th:text="${jugador.getFecha()}"></td>
+					<td sec:authorize="hasRole('ROLE_ADMIN')"  >
+						<a class="btn btn-success btn-sm" th:href="@{/views/jugador/update/}+${jugador.getId()}"
+							title="Editar registro del jugador">
+							<i class="fa-solid fa-file-pen"></i>
+							<span th:text="#{accion.editar}"></span>
+						</a>
+						
+						<a class="btn btn-primary btn-sm" th:href="@{/views/jugador/getAllJugadasPorJugador/}+${jugador.getId()}"
+						
+							title="Jugadas por Jugador">
+							<i class="fa-solid fa-circle-info"></i>
+							<span th:text="#{jugador.jugadas}"></span>
+						</a>
+
+
+					</td>
+				</tr>
+			</tbody>
+
+		</table>
+
+
+	</div>
+
+	<!---------------------------------------------------------------------------------------------->
+</div>
+	
+	<!--OTRO SCRIPTS PARA PAGINAS-->
+	<th:block layout:fragment="page-scripts">
+
+	</th:block>
+
+</body>
+</html>

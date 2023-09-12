@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head th:fragment="head">
+<meta charset="utf-8" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<meta name="description" content="" />
+<meta name="author" content="" />
+<title>Sistema Web</title>
+<!-- Favicon-->
+<link rel="icon" type="image/x-icon" th:href="@{/assets/favicon.ico}" />
+<!-- Core theme CSS (includes Bootstrap)-->
+
+
+
+<link th:href="@{/css/styles.css}" rel="stylesheet" />
+
+<link th:href="@{/fontawesome/css/all.css}"  rel="stylesheet"> 
+
+<link th:href="@{/css/bootstrap5.1.3.css}" rel="stylesheet" />
+
+<link th:href="@{/assets/css/styles2.css}" rel="stylesheet" />
+
+
+
+
+
+
+</head>
+<body>
+	<div class="d-flex" id="wrapper">
+		<!-- Sidebar-->
+		<div class="border-end bg-white" id="sidebar-wrapper">
+			<div class="sidebar-heading border-bottom bg-light" th:text="#{layout.titulo}">
+				</div>
+			<div class="list-group list-group-flush">
+				<a
+					class="list-group-item list-group-item-action list-group-item-light p-3"
+					th:href="@{/}"><i class="fa-solid fa-house" style="color: #0000ff;"></i> [[#{layout.inicio}]]
+				</a> 
+				
+				
+				<a
+					class="list-group-item list-group-item-action list-group-item-light p-3"
+					th:href="@{/views/juego/getAll}"><i class="fa-solid fa-user-secret" style="color: #0000ff;"></i>  [[#{jugador.partidas}]]
+				</a>
+			
+				<!--
+				<a
+					class="list-group-item list-group-item-action list-group-item-light p-3" 
+					th:href="@{/views/rol/getAll}"><i class="fa-solid fa-globe" style="color: #0000ff;"></i> [[#{layout.rol}]]
+				</a>
+				-->
+				<a
+					class="list-group-item list-group-item-action list-group-item-light p-3" sec:authorize="hasRole('ROLE_ADMIN')"
+					th:href="@{/views/jugador/getAllUserByRol}"><i class="fa-solid fa-user-secret" style="color: #0000ff;"></i>  [[#{layout.jugador}]]
+				</a>
+				
+				<a
+					class="list-group-item list-group-item-action list-group-item-light p-3" sec:authorize="hasRole('ROLE_ADMIN')"
+					th:href="@{/views/jugador/getAllUserByPorcenjaAcierto}"><i class="fa-solid fa-user-secret" style="color: #0000ff;"></i>  [[#{jugador.porcentaje.acierto}]]
+				</a>
+				
+				<a
+					class="list-group-item list-group-item-action list-group-item-light p-3" sec:authorize="hasRole('ROLE_ADMIN')"
+					th:href="@{/views/jugador/getAllUserPorRankin}"><i class="fa-solid fa-user-secret" style="color: #0000ff;"></i>  [[#{jugador.lista.rankin}]]
+				</a>
+				
+				<a
+					class="list-group-item list-group-item-action list-group-item-light p-3" sec:authorize="hasRole('ROLE_ADMIN')"
+					th:href="@{/views/jugador/getPeorPorcenjaAcierto}"><i class="fa-solid fa-user-secret" style="color: #0000ff;"></i>  [[#{jugador.peorporcentaje.acierto}]]
+				</a>
+				
+				<a
+					class="list-group-item list-group-item-action list-group-item-light p-3" sec:authorize="hasRole('ROLE_ADMIN')"
+					th:href="@{/views/jugador/getPeorRankin}"><i class="fa-solid fa-user-secret" style="color: #0000ff;"></i>  [[#{jugador.peorrankin.logrado}]]
+				</a>
+				
+		
+			</div>
+		</div>
+		<!-- Page content wrapper-->
+		<div id="page-content-wrapper">
+			<!-- Top navigation-->
+			<nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+				<div class="container-fluid">
+					<button class="btn btn-light" id="sidebarToggle"><i class="fa-solid fa-bars"
+							style="color: #0000ff;"></i></button>
+					<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+						data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+						aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon"></span>
+					</button>
+					<div class="collapse navbar-collapse" id="navbarSupportedContent">
+						<ul class="navbar-nav ms-auto mt-2 mt-lg-0">
+		
+							<li class="nav-item dropdown">
+								<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+									data-bs-toggle="dropdown" aria-expanded="false">
+									<i class="fa-solid fa-user-shield" style="color: #0000ff;"></i>
+								</a>
+								<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+									<a class="dropdown-item" href="#"><i class="fa-solid fa-user" style="color: #0000ff;"></i>
+										<span sec:authentication="name"></span>
+									</a>
+									<a class="dropdown-item" href="#"><i class="fa-solid fa-eye" style="color: #0000ff;"></i>
+										<span sec:authentication="principal.authorities"></span>
+									</a>
+									<li>
+										<hr class="dropdown-divider">
+									</li>
+									
+								</ul>
+							</li>
+		<!--
+							<li class="nav-item active"><a class="nav-link" th:href="@{/(lang=es)}" title="Idioma español"><img
+										th:src="@{/imagen/espana.png}" alt="Español" width="25">  </a>
+							</li>
+							<li class="nav-item active"><a class="nav-link" th:href="@{/(lang=ca)}" title="Idioma català"><img
+										th:src="@{/imagen/catalan.png}" alt="Catalan" width="25"></a>
+							</li>
+							<li class="nav-item active"><a class="nav-link" th:href="@{/(lang=en)}" title="English language"><img
+										th:src="@{/imagen/usa.png}" alt="Ingles" width="25" ></a>
+							</li>
+		
+		-->				
+							<li sec:authorize="isAuthenticated()" class="nav-item active"><a class="nav-link" th:href="@{/logout}" title="Cerrar Sesión">								
+								      <i class="fa-solid fa-arrow-right-from-bracket" style="color: #ff0000;"></i>
+								      </a>
+							</li>
+							
+							<!--
+							<li class="nav-item">
+								<form method="post" th:action="@{/logout}">
+									<a class="nav-link" href="javascript:void(0);" onclick="this.parentNode.submit();"><i
+											class="fa-solid fa-arrow-right-from-bracket" style="color: #ff0000;"></i></a>
+								</form>
+							</li>
+							-->
+						</ul>
+					</div>
+				</div>
+			</nav>
+			<!--  MENSAJES -->
+			
+			
+			<div class="alert alert-success alert-dismissible" th:if="${success != null}">
+				<label th:text="${success}"></label>
+				<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+			</div>
+			
+			<div class="alert alert-danger alert-dismissible" th:if="${error != null}">
+				<label th:text="${error}"></label>
+				<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+			</div>
+			
+			<div class="alert alert-warning alert-dismissible" th:if="${warning != null}">
+				<label th:text="${warning}"></label>
+				<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+			</div>
+			
+			<div class="alert alert-info alert-dismissible" th:if="${info != null}">
+				<label th:text="${info}"></label>
+				<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+			</div>
+	
+			<!-- Page content-->
+			<div class="container-fluid" layout:fragment="page-content">
+				
+				
+				
+			
+			
+			</div>
+		</div>
+	</div>
+	<!-- Bootstrap core JS-->
+	<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+	<!-- Core theme JS-->
+	<script th:src="@{/js/scripts.js}"></script>
+
+	<script th:src="@{/js/bootstrap.5.1.3.min.js}"></script>
+	<!--   <script th:src="@{/js/bootstrap.bundle.min.js}"></script>   -->
+	<script th:src="@{/js/bootstrap.bundle.v.5.1.3.min.js}"></script>
+	<script th:src="@{/js/popper.2.10.2.min.js}"></script>
+	
+	
+
+	<!--OTRO SCRIPTS PARA PAGINAS-->
+	<script th:src="@{/assets/js/underscore-min.js}"></script>
+	<script th:src="@{/assets/js/juego.js}"></script>
+	<th:block layout:fragment="page-scripts">
+
+		
+
+
+	</th:block>
+</body>
+</html>

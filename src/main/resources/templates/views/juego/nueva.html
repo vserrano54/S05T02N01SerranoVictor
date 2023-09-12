@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/layout}">
+<head th:replace="layout/layout :: head">
+<meta charset="UTF-8">
+<title></title>
+</head>
+<body class="juego">
+		  
+
+	<div class="container-fluid" layout:fragment="page-content">
+		
+		
+		
+	<span id="nombreUsuario" sec:authentication="name" style="display: none;"></span>
+
+		
+	<div class="container mt-5 ml-5 pl-5">
+    <div class="row justify-content-left">
+        
+                    <form th:action="@{/views/jugada/save}" th:object="${partida}" method="post" hidden>
+                        
+                         <input id="partida" name="partida" type="hidden" th:field="*{id}">
+                        
+                     
+                    
+                    	<input id="txtJugador" name="txtJugador" th:field="*{usuario}">
+                        
+                       
+                        <div class="form-group">
+                            <!-- Reducción del ancho del campo de texto -->
+                            <label for="rol" class="form-label col-md-2">[[#{partida.fecha}]]</label>
+                            <input type="text" class="form-control form-control-sm col-md-3" id="fecha"
+                                th:field="*{fecha}" disabled />
+                            <small class="form-text text-danger" th:if="${#fields.hasErrors('fecha')}"
+                                th:errors="*{fecha}">
+                            </small>
+                        </div>
+                        
+                        <input id="txtDado1" name="txtDado1"  th:field="*{dado1}">
+                         <input id="txtDado2" name="txtDado2"  th:field="*{dado2}">
+                         
+                         	<div class="card-footer">
+									<button type="submit" id="guardarJugada" name="guardarJugada" class="btn btn-primary btn-sm">
+										<i class="fa-solid fa-floppy-disk"></i>
+										<span th:text="#{accion.guardar}"></span>
+									</button>
+							</div>
+                    </form>
+             
+    </div>
+</div>
+
+
+<header class="titulo">
+        Juego de Dados
+    </header>
+    
+    <div class="row mt-2">
+        <div id="divBotones" class="col text-center">
+           
+            <button id="btnNuevo" class="btn btn-danger">Nueva tirada</button>
+            <button id="btnTirar" class="btn btn-primary" disabled>Tirar Dados</button>
+        </div>
+    </div>
+    
+    
+    <div class="row container">
+        <div class="col">
+
+            <h1><span sec:authentication="name"></span> - <small>0</small></h1>
+            <div id="jugador-dados">
+             <img class="dados" src="/assets/dados/x.jpg">  
+            
+            </div>
+        </div>
+
+    </div>
+
+
+		
+		
+		
+		<!--------------------------------------------------------------------  -->
+		</div>
+	
+	<!--OTRO SCRIPTS PARA PAGINAS-->
+	<th:block layout:fragment="page-scripts">
+
+	</th:block>
+
+</body>
+</html>

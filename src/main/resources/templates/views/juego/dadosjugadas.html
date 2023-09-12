@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/layout}">
+<head th:replace="layout/layout :: head">
+<meta charset="UTF-8">
+<!--  Otros Css particulares de la pagina  -->
+
+
+<title></title>
+
+
+
+
+</head>
+<body class="juego">
+	<div class="container-fluid" layout:fragment="page-content">
+	<!--
+		<div class="d-flex justify-content-center pt-3">
+			<img th:src="@{/imagen/fondo.jpg}" class="img-fluid" style="width: 100vw; height: 40vw;">
+		</div>
+	-->
+	<header class="titulo">
+        Juego de Dados
+    </header>
+    
+    <!--
+	<span sec:authentication="name"></span><small>
+	-->	
+	
+	<form th:action="@{/views/partida/savePartida}" th:object="${partida}" method="post">
+		
+		<input type="hidden" id="id" name="id"  th:field="*{id}">
+		
+		<input type="date" id="fecha" name="fecha" th:field="*{fecha}" />
+	
+		<button id="btnPartda" name="btnPartda" type="submit">Guardar</button>
+	
+	</form>
+	
+
+		
+	 <div class="row mt-2">
+        <div id="divBotones" class="col text-center">
+            <button id="btnNuevaPartida" class="btn btn-danger">Nuevo Partida</button>
+            <button id="btnNuevo" class="btn btn-danger">Nueva tirada</button>
+            <button id="btnTirar" class="btn btn-primary" disabled>Tirar Dados</button>
+        </div>
+    </div>
+    
+    
+    <div class="row container">
+        <div class="col">
+
+            <h1><span sec:authentication="name"></span> - <small>0</small></h1>
+            <div id="jugador-dados">
+           <!--   <img class="dados" src="/assets/dados/2A.png">   --> 
+            
+            </div>
+        </div>
+
+    </div>
+	
+
+ 
+    
+    
+
+	
+	
+
+	
+	
+	
+	</div>
+	
+	<!--OTRO SCRIPTS PARA PAGINAS-->
+	
+	
+
+	
+	<th:block layout:fragment="page-scripts">
+		
+	
+	</th:block>
+
+</body>
+</html>
